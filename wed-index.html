@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DreamKnot Weddings - Destination Wedding Planner</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+      }
+      .top-header {
+        background-color: #fff;
+        padding: 15px 30px;
+        display: grid;
+        grid-template-columns: 1fr 4fr 1fr;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .logo img {
+        height: 100px;
+      }
+      .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .top-header nav a {
+        margin: 10px;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .top-header nav a:hover {
+        text-decoration: underline;
+      }
+      .icons {
+        color: black;
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        font-size: 26px;
+      }
+      .slideshow-container {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        border-radius: 20px;
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+      .slideshow-container img {
+        width: 100%;
+        height: 100%;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #00000090;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .content {
+        color: white;
+        max-width: 900px;
+        padding: 20px;
+      }
+
+      .content h1 {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.4;
+        margin-bottom: 25px;
+      }
+
+      .search-bar {
+        background: white;
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto 20px;
+        max-width: 500px;
+        padding: 10px 20px;
+      }
+
+      .search-bar input {
+        border: none;
+        outline: none;
+        font-size: 18px;
+        flex: 1;
+        border-radius: 30px;
+      }
+
+      .search-icon {
+        font-size: 18px;
+        color: #888;
+        margin-left: 10px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-buttons button {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        padding: 12px 20px;
+        border-radius: 25px;
+        border: none;
+        font-size: 18px;
+      }
+
+      .hero-buttons button:hover {
+        background-color: #e91e63;
+        color: white;
+      }
+      .wedding-section {
+        padding: 60px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .wedding-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 60px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .image-grid img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+
+      .text-content {
+        max-width: 600px;
+      }
+
+      .text-content h1 {
+        font-size: 34px;
+        margin-bottom: 20px;
+      }
+
+      .text-content p {
+        font-size: 18px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .know-more {
+        color: #003366;
+        text-decoration: none;
+        font-size: 18px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+      .know-more:hover {
+        color: #b8860b;
+      }
+
+      .image img {
+        width: 500px;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+      .hotel-container {
+        padding: 50px 100px;
+        background-color: #fef5e7;
+        padding: 40px 20px;
+        margin: 60px;
+      }
+      .head {
+        font-size: 20px;
+        margin-bottom: 50px;
+      }
+      .hotel-img {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+      .hotel-img img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      .hotel-img p {
+        font-size: 20px;
+        align-items: centre;
+      }
+      .hotel-img p:hover {
+        color: #e91e63;
+      }
+      .section2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 8px auto;
+        gap: 50px;
+        padding: 60px;
+      }
+      .section2 img {
+        width: 100%;
+        height: 500px;
+        border-radius: 10px;
+      }
+      .content2 h1 {
+        font-size: 60px;
+        color: #c7c1c1;
+        word-spacing: 10px;
+        word-spacing: 5px;
+        line-height: 80px;
+        margin-bottom: 30px;
+      }
+
+      .content2 h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #1f1d1d;
+      }
+
+      .content2 p {
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 10px;
+      }
+      footer {
+        background-color: #00000020;
+        padding: 40px 60px;
+        margin-bottom: 30px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: auto;
+        padding-bottom: 40px;
+        text-align: center;
+      }
+
+      .footer-content h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+
+      .cities {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        text-align: left;
+        justify-content: center;
+      }
+
+      .cities ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      .cities ul li {
+        margin: 8px 0;
+      }
+
+      .cities ul li:hover {
+        color: #c94f4f;
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 60px;
+      }
+
+      .footer-left h4 {
+        font-weight: bold;
+        margin-bottom: 18px;
+      }
+
+      .footer-left ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-left a {
+        color: #00000090;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-right {
+        text-align: right;
+      }
+
+      .footer-logo h2 {
+        font-size: 26px;
+      }
+      .footer-logo p {
+        font-size: 13px;
+        color: #aaa;
+      }
+
+      .contact p {
+        font-size: 14px;
+        margin: 5px;
+      }
+
+      .contact i {
+        margin-right: 8px;
+      }
+
+      hr {
+        border: 0.5px solid #b7b4b4;
+        margin: 30px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+      }
+
+      .socials .icons {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .socials .icons a {
+        text-decoration: none;
+        margin: 0 10px;
+        color: #fff;
+        font-size: 18px;
+        background: #444;
+        padding: 12px;
+        border-radius: 50%;
+      }
+
+      .socials .icons a:hover {
+        background: #666;
+      }
+      .heading h1 {
+        font-size: 30px;
+        padding: 20px 60px;
+      }
+      .destination-img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        transition: transform 5s ease-in-out;
+      }
+      .destination-img img:hover {
+        translate: scale(1.9);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between;
+        padding: 30px 60px;
+        gap: 50px;
+      }
+      .destination-img h3 {
+        margin-bottom: 10px;
+        align-items: center;
+      }
+      .destination-img span {
+        margin-bottom: 20px;
+        color: #c94f4f;
+        font-size: 16px;
+      }
+      .destination-img p {
+        margin-bottom: 20px;
+      }
+      .blog-section {
+        padding: 40px 60px;
+      }
+
+      .blog-section h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      .blog-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px #00000090;
+        overflow: hidden;
+        min-width: 300px;
+        max-width: 370px;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 15px 20px;
+      }
+
+      .card-content h2 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+        color: #111;
+        overflow: hidden;
+      }
+
+      .card-content p {
+        font-size: 16px;
+        color: #555;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .card-content a {
+        color: #b8005f;
+        text-decoration: none;
+      }
+      .form {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px #00000090;
+        margin: 100px 300px;
+      }
+      .form-container {
+        max-width: 600px;
+        width: 100%;
+        padding: 30px;
+      }
+
+      .form-container h2 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .form-container p {
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+        margin-bottom: 20px;
+      }
+
+      .input-group span.material-icons {
+        margin-right: 10px;
+        color: #444;
+      }
+
+      .input-group input,
+      .input-group select {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 5px 0;
+      }
+
+      .form-btn button {
+        background-color: #b8005f;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+      }
+      .blog {
+        padding: 40px 60px;
+      }
+      .section1 {
+        margin-top: 150px;
+        padding: 40px 60px;
+        display: flex;
+        justify-content: center;
+      }
+      .section1 h1 {
+        font-size: 40px;
+      }
+
+      .blog {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        margin-bottom: 40px;
+        gap: 70px;
+      }
+
+      .international {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px #00000090;
+        overflow: hidden;
+        max-width: 300px;
+        transition: transform 2s ease-in-out;
+      }
+
+      .international:hover {
+        transform: translateY(-5px);
+      }
+
+      .international img {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+        padding: 20px 30px;
+      }
+
+      .cities-name {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cities-name h4 {
+        font-size: 20px;
+        color: #111;
+        overflow: hidden;
+      }
+
+      .cities-name p {
+        align-items: center;
+        font-size: 16px;
+        color: #555;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 520px) {
+        .top-header {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 15px;
+        }
+
+        .logo {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .menu {
+          display: none;
+        }
+
+        .icons {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+
+        .content h1,
+        .content2 h1,
+        .text-content h1,
+        .heading h1,
+        .section1 h1,
+        .blog-section h1 {
+          font-size: 22px;
+          line-height: 1.3;
+          padding: 10px 15px;
+        }
+
+        .content2 h2 {
+          font-size: 20px;
+          padding: 0 15px;
+        }
+
+        .text-content p {
+          font-size: 14px;
+          padding: 0 15px;
+        }
+
+        .hero-buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 0;
+        }
+
+        .wedding-content {
+          display: flex;
+          flex-direction: column;
+          padding: 10px 15px;
+          gap: 15px;
+        }
+
+        .image-grid,
+        .section2,
+        .hotel-img,
+        .blog-cards,
+        .blog,
+        .grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .image-grid img,
+        .section2 img {
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
+        }
+
+        .form {
+          display: flex;
+          flex-direction: column;
+          margin: 20px 15px;
+          gap: 15px;
+        }
+
+        .form-container {
+          padding: 10px;
+        }
+
+        .footer-top {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          gap: 20px;
+          padding: 20px 10px;
+        }
+
+        .cities {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+          padding: 10px 15px;
+        }
+
+        .hotel-img p {
+          text-align: center;
+          font-size: 14px;
+          padding: 5px 15px;
+        }
+          .footer-right{
+          text-align: center;
+        }
+
+        .footer-content h2 {
+          font-size: 20px;
+          padding: 0 10px;
+        }
+
+        .cities-name h4 {
+          font-size: 16px;
+        }
+
+        .cities-name p {
+          font-size: 13px;
+        }
+
+        .footer-left ul {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 0 10px;
+        }
+
+        .slideshow-container {
+          height: 50vh;
+        }
+        .destination-cities .heading{
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="logo">
+        <img src="assets/image/logo_wed.png" alt="DreamKnot Logo" />
+      </div>
+      <div class="menu">
+        <nav>
+          <a href="wed-index.html">Home</a>
+          <a href="wed_destination.html">Top Wedding Destination</a>
+          <a href="wedding_expereince.html">Wedding experience</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+      </div>
+      <div class="icons">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+    </header>
+    <section1>
+      <div class="slideshow-container">
+        <div class="slide bg1">
+          <img src="assets/image/img2.jpg" />
+        </div>
+        <div class="overlay">
+          <div class="content">
+            <h1>
+              EXPLORE DESTINATIONS<br />
+              IN INDIA FOR<br />
+              YOUR DREAM DESTINATION WEDDINGS
+            </h1>
+            <div class="search-bar">
+              <input
+                type="text"
+                placeholder="Search Your Wedding Destination"
+              />
+              <span class="search-icon">&#128269;</span>
+            </div>
+            <div class="hero-buttons">
+              <button>Get Best Deals on Hotels</button>
+              <button>Plan My Wedding</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section1>
+
+    <section class="wedding-section">
+      <h2 class="section-title">Crafting Unforgettable Wedding Destinations</h2>
+      <div class="wedding-content">
+        <div class="image-grid">
+          <img src="assets/image/s1.jpg" alt="Wedding 1" />
+          <img src="assets/image/s2.jpg" alt="Wedding 2" />
+          <img src="assets/image/s3.jpg" alt="Wedding 3" />
+          <img src="assets/image/s4.jpg" alt="Wedding 4" />
+          <img src="assets/image/3.jpg" alt="wedding 5" />
+          <img src="assets/image/img6.jpg" alt="wedding 6" />
+        </div>
+        <div class="text-content">
+          <h1>Where Your Wedding Dreams Take Flight</h1>
+          <p>
+            At Wedding Destinations India, we specialize in transforming your
+            wedding dreams into reality by curating the perfect destination
+            wedding in India experience. With years of expertise in planning and
+            executing weddings in the most stunning locations around the world.
+          </p>
+          <p>
+            Our team of dedicated wedding consultants works closely with you to
+            understand your vision, preferences, and desires. Whether it’s a
+            serene beach ceremony, a romantic castle wedding, or an exotic
+            cultural experience, we provide the best destination wedding places
+            in India to match your dream wedding.
+          </p>
+          <a href="#" class="know-more">— Know More</a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="hotel-container">
+        <div class="head">
+          <h1>Best Wedding Hotels In India</h1>
+        </div>
+        <div class="hotel-img">
+          <div class="img1">
+            <img src="assets/image/h2.png" />
+            <p>ITC Grand Bharat, Delhi</p>
+          </div>
+          <div class="img1">
+            <img src="assets/image/h4.jpg" />
+            <p>The hridayesh resort ,corbett</p>
+          </div>
+          <div class="img1">
+            <img src="assets/image/h3.jpg" />
+            <p>heritage spa and resort ,manesar</p>
+          </div>
+          <div class="img1">
+            <img src="assets/image/h1.jpg" />
+            <p>raas devigarh ,udaipur</p>
+          </div>
+          <div class="img1">
+            <img src="assets/image/h5.jpg" />
+            <p>Shiv vilas Resort,jaipur</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="section2">
+        <div class="image">
+          <img src="assets/image/img4.jpg" />
+        </div>
+        <div class="content2">
+          <h1>Creating Magic Doesn't Just Happen</h1>
+          <h2>We Will Help You.......</h2>
+          <p>
+            Develop each of your design ideas for never-before-seen,
+            personality-packed details:
+          </p>
+          <p>
+            Engagement party turned surprise wedding? Sure.Married on a plane
+            (while in the air) to land at your island reception? Yes,
+            please.Multi-day build for an exquisite estate-style tented wedding?
+          </p>
+          <p>
+            Let Us Make Your Dream Come True. From Breathtaking venues to
+            seamless planning, we’re here to create unforgettable moments
+          </p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="destination-cities">
+        <div class="heading">
+          <h1>Destinations Cities</h1>
+        </div>
+        <div class="grid">
+          <div class="destination-img">
+            <img src="assets/image/d1.jpg" />
+            <h3>Goa</h3>
+            <span>50+ destination venue</span>
+            <p>
+              Welcome to the tropical paradise of Goa- a destination where your
+              weeding become celebration
+            </p>
+          </div>
+          <div class="destination-img">
+            <img src="assets/image/d2.jpg" />
+            <h3>Jaipur</h3>
+            <span>40+ destination venue</span>
+            <p>
+              Unviel the Royal Grandeur-Indulge in the magestic and cultural
+              rich.
+            </p>
+          </div>
+          <div class="destination-img">
+            <img src="assets/image/d3.jpg" />
+            <h3>Udaipur</h3>
+            <span>50+ destination venue</span>
+            <p>
+              Every destination weeding is royal affair among the majestic
+              places of the uadaipur.
+            </p>
+          </div>
+          <div class="destination-img">
+            <img src="assets/image/d4.jpg" />
+            <h3>Lonavla</h3>
+            <span>30+ destination venue</span>
+            <p>
+              A destination wedding among the hills-celebrate your ethernal bond
+              in the Breathtaking bath in Lonavla.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="blog-section" id="blog">
+      <h1>Blogs</h1>
+      <div class="blog-cards">
+        <div class="card">
+          <img src="assets/image/b1.avif" alt="Blog 1" />
+          <div class="card-content">
+            <h2>Experiencing the Extravaganza: Your Dream Wedding</h2>
+            <p>
+              Congratulations on embarking on the extraordinary journey of
+              planning your...
+            </p>
+            <a href="#">Read more...</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets/image/b3.jpg" alt="Blog 2" />
+          <div class="card-content">
+            <h2>Top 5 Wedding Venues for a Destination Wedding</h2>
+            <p>
+              A destination wedding obviously is something that has attracted a
+              lot of...
+            </p>
+            <a href="#">Read more...</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets/image/b2.jpg" alt="Blog 3" />
+          <div class="card-content">
+            <h2>Best Places for Destination Weddings in India</h2>
+            <p>
+              What comes to your mind when you hear the term Destination
+              Weddings? We’re...
+            </p>
+            <a href="#">Read more...</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section1">
+      <h1>Looking For More destination</h1>
+    </div>
+    <div class="blog">
+      <div class="international">
+        <img src="assets/image/shrilanka.png" />
+        <div class="cities-name">
+          <h4>shrilanka</h4>
+          <p>wedding</p>
+        </div>
+      </div>
+      <div class="international">
+        <img src="assets/image/dubai.jpg" />
+        <div class="cities-name">
+          <h4>Dubai</h4>
+          <p>wedding</p>
+        </div>
+      </div>
+      <div class="international">
+        <img src="assets/image/thailand.jpg" />
+        <div class="cities-name">
+          <h4>Thailand</h4>
+          <p>wedding</p>
+        </div>
+      </div>
+      <div class="international">
+        <img src="assets/image/abudbhai.jpg" />
+        <div class="cities-name">
+          <h4>Abu Dhabi</h4>
+          <p>wedding</p>
+        </div>
+      </div>
+      <div class="international">
+        <img src="assets/image/paris.avif" />
+        <div class="cities-name">
+          <h4>Paris</h4>
+          <p>wedding</p>
+        </div>
+      </div>
+    </div>
+    <div class="form" id="contact">
+      <div class="form-container">
+        <h2>Share your wedding details</h2>
+        <p>Our destination weddings expert will connect with you shortly</p>
+
+        <form>
+          <div class="input-group">
+            <span class="material-icons">Destination:</span>
+            <select required>
+              <option value="none"></option>
+              <option>Goa</option>
+              <option>Udaipur</option>
+              <option>Jaipur</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="material-icons">calendar_today</span>
+            <input type="date" required />
+          </div>
+
+          <div class="input-group">
+            <span class="material-icons">Budget</span>
+            <select required>
+              <option value="none"></option>
+              <option>Below ₹5 Lakhs</option>
+              <option>₹5 - ₹10 Lakhs</option>
+              <option>₹10+ Lakhs</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="material-icons">call</span>
+            <input type="tel" placeholder="Phone number" required />
+          </div>
+          <div class="form-btn">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <h2>Top Wedding Destinations</h2>
+        <div class="cities">
+          <ul>
+            <li>Agra</li>
+            <li>Alibaug</li>
+            <li>Amritsar</li>
+            <li>Bangalore</li>
+            <li>Bikaner</li>
+            <li>Chandigarh</li>
+            <li>Chennai</li>
+            <li>Delhi</li>
+          </ul>
+          <ul>
+            <li>Diu</li>
+            <li>Goa</li>
+            <li>Guwahati</li>
+            <li>Hyderabad</li>
+            <li>Jaipur</li>
+            <li>Jaisalmer</li>
+            <li>Jodhpur</li>
+          </ul>
+          <ul>
+            <li>Kasauli</li>
+            <li>Kashmir</li>
+            <li>Kolkata</li>
+            <li>Mahabaleshwar</li>
+            <li>Mamallapuram</li>
+            <li>Mumbai</li>
+            <li>Mussoorie</li>
+          </ul>
+          <ul>
+            <li>Ooty</li>
+            <li>Pushkar</li>
+            <li>Ranthambore</li>
+            <li>Rishikesh</li>
+            <li>Shimla</li>
+            <li>Silvassa</li>
+            <li>Udaipur</li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-top">
+        <div class="footer-left">
+          <h4>GET INSPIRED</h4>
+          <ul>
+            <li><a href="#">Photos</a></li>
+            <li><a href="#">Real Weddings</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-right">
+          <div class="footer-logo">
+            <h2>Wedding<span class="highlight">z</span>.in</h2>
+            <p>Call our 24-hour helpline</p>
+          </div>
+          <div class="contact">
+            <p><i class="fas fa-phone"></i> 80-48-12-32-72</p>
+            <p><i class="fas fa-envelope"></i> info.weddingz@oyorooms.com</p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-bottom">
+        <div class="socials">
+          <h4>FOLLOW US</h4>
+          <div class="icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

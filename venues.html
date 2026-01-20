@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore premium wedding venues across India - luxury resorts, heritage palaces, beach locations, and hill stations for your dream destination wedding.">
+    <title>Wedding Venues | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/h1.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .filter-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+        }
+        
+        .filter-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: end;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f1d1d;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .venue-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .venue-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .venue-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .venue-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        
+        .venue-card:hover .venue-image img {
+            transform: scale(1.1);
+        }
+        
+        .venue-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .venue-rating {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+        }
+        
+        .venue-rating i {
+            color: #FFD700;
+        }
+        
+        .venue-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .venue-title {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #1f1d1d;
+        }
+        
+        .venue-location {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .venue-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .venue-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-tag {
+            background: #f5f5f5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .feature-tag i {
+            color: var(--primary-color);
+            font-size: 12px;
+        }
+        
+        .venue-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .venue-capacity {
+            font-weight: 600;
+            color: #1f1d1d;
+        }
+        
+        .venue-capacity i {
+            color: var(--primary-color);
+            margin-right: 6px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 80px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .filter-bar {
+                position: static;
+            }
+            
+            .filter-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html" class="active">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Premium Wedding Venues</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Discover stunning venues across India for your dream destination wedding</p>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="section-padding" style="padding-top: 40px;">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="search">Search Venues</label>
+                        <input type="text" id="search" placeholder="Search by name or location...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="venueType">Venue Type</label>
+                        <select id="venueType">
+                            <option value="">All Types</option>
+                            <option value="resort">Luxury Resort</option>
+                            <option value="palace">Heritage Palace</option>
+                            <option value="beach">Beach Resort</option>
+                            <option value="hillstation">Hill Station</option>
+                            <option value="farmhouse">Farmhouse</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="">All Locations</option>
+                            <option value="goa">Goa</option>
+                            <option value="udaipur">Udaipur</option>
+                            <option value="jaipur">Jaipur</option>
+                            <option value="delhi">Delhi NCR</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="mumbai">Mumbai</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="capacity">Guest Capacity</label>
+                        <select id="capacity">
+                            <option value="">Any Capacity</option>
+                            <option value="small">50-150 Guests</option>
+                            <option value="medium">150-300 Guests</option>
+                            <option value="large">300-500 Guests</option>
+                            <option value="xlarge">500+ Guests</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VENUES GRID -->
+            <div class="grid-3" id="venuesGrid">
+                <!-- Venue 1 -->
+                <div class="venue-card" data-type="resort" data-location="delhi" data-capacity="large">
+                    <div class="venue-image">
+                        <img src="image/h2.png" alt="ITC Grand Bharat">
+                        <span class="venue-badge">Premium</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">ITC Grand Bharat</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Gurgaon, Delhi NCR</p>
+                        <p class="venue-description">
+                            A luxurious retreat spread across 300 acres, featuring stunning Mughal architecture, world-class amenities, and breathtaking landscapes perfect for grand celebrations.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-swimming-pool"></i> Pool</span>
+                            <span class="feature-tag"><i class="fas fa-spa"></i> Spa</span>
+                            <span class="feature-tag"><i class="fas fa-utensils"></i> Multi-Cuisine</span>
+                            <span class="feature-tag"><i class="fas fa-car"></i> Valet Parking</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 300-500 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 2 -->
+                <div class="venue-card" data-type="resort" data-location="goa" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/h4.jpg" alt="The Hridayesh Resort">
+                        <span class="venue-badge">Nature</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">The Hridayesh Resort</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Jim Corbett, Uttarakhand</p>
+                        <p class="venue-description">
+                            Nestled in the wilderness, this eco-luxury resort offers a unique blend of nature and comfort, ideal for couples seeking an intimate celebration.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-tree"></i> Nature Views</span>
+                            <span class="feature-tag"><i class="fas fa-campground"></i> Outdoor Venues</span>
+                            <span class="feature-tag"><i class="fas fa-leaf"></i> Eco-Friendly</span>
+                            <span class="feature-tag"><i class="fas fa-hiking"></i> Activities</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 150-300 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 3 -->
+                <div class="venue-card" data-type="resort" data-location="delhi" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/h3.jpg" alt="Heritage Spa Resort">
+                        <span class="venue-badge">Luxury</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">Heritage Spa Resort</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Manesar, Haryana</p>
+                        <p class="venue-description">
+                            An elegant resort with world-class spa facilities, beautiful gardens, and multiple event spaces for a sophisticated wedding experience.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-spa"></i> Luxury Spa</span>
+                            <span class="feature-tag"><i class="fas fa-seedling"></i> Gardens</span>
+                            <span class="feature-tag"><i class="fas fa-glass-cheers"></i> Bar</span>
+                            <span class="feature-tag"><i class="fas fa-dumbbell"></i> Gym</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 200-350 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 4 -->
+                <div class="venue-card" data-type="palace" data-location="udaipur" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/h1.jpg" alt="Raas Devigarh">
+                        <span class="venue-badge">Royal</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">Raas Devigarh</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Udaipur, Rajasthan</p>
+                        <p class="venue-description">
+                            An 18th-century palace transformed into a luxury hotel, offering royal grandeur with modern amenities in the heart of Rajasthan's Aravalli Hills.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-crown"></i> Royal Heritage</span>
+                            <span class="feature-tag"><i class="fas fa-swimming-pool"></i> Infinity Pool</span>
+                            <span class="feature-tag"><i class="fas fa-mountain"></i> Hill Views</span>
+                            <span class="feature-tag"><i class="fas fa-wine-glass"></i> Fine Dining</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 100-250 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 5 -->
+                <div class="venue-card" data-type="beach" data-location="goa" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/d1.jpg" alt="Taj Exotica Goa">
+                        <span class="venue-badge">Beach</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">Taj Exotica Goa</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Benaulim, Goa</p>
+                        <p class="venue-description">
+                            Beachfront luxury resort with pristine sands, lush gardens, and Mediterranean-style architecture, perfect for a tropical beach wedding.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-umbrella-beach"></i> Private Beach</span>
+                            <span class="feature-tag"><i class="fas fa-water"></i> Water Sports</span>
+                            <span class="feature-tag"><i class="fas fa-cocktail"></i> Beach Bar</span>
+                            <span class="feature-tag"><i class="fas fa-sun"></i> Sunset Views</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 200-400 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 6 -->
+                <div class="venue-card" data-type="palace" data-location="jaipur" data-capacity="large">
+                    <div class="venue-image">
+                        <img src="image/d2.jpg" alt="The Oberoi Rajvilas">
+                        <span class="venue-badge">Heritage</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">The Oberoi Rajvilas</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</p>
+                        <p class="venue-description">
+                            A luxury resort inspired by Rajput palaces, featuring stunning architecture, lush gardens, and impeccable service for a regal celebration.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-fort-awesome"></i> Palace Design</span>
+                            <span class="feature-tag"><i class="fas fa-leaf"></i> 32 Acres</span>
+                            <span class="feature-tag"><i class="fas fa-horse"></i> Royal Activities</span>
+                            <span class="feature-tag"><i class="fas fa-gem"></i> Luxury Suites</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 300-600 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 7 -->
+                <div class="venue-card" data-type="resort" data-location="kerala" data-capacity="small">
+                    <div class="venue-image">
+                        <img src="image/d3.jpg" alt="Kumarakom Lake Resort">
+                        <span class="venue-badge">Backwaters</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">Kumarakom Lake Resort</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Kumarakom, Kerala</p>
+                        <p class="venue-description">
+                            A serene lakeside resort on Vembanad Lake, offering traditional Kerala architecture, Ayurvedic spa, and tranquil backwater views.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-water"></i> Lake Views</span>
+                            <span class="feature-tag"><i class="fas fa-ship"></i> Houseboat</span>
+                            <span class="feature-tag"><i class="fas fa-spa"></i> Ayurveda</span>
+                            <span class="feature-tag"><i class="fas fa-fish"></i> Fresh Seafood</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 80-150 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 8 -->
+                <div class="venue-card" data-type="hillstation" data-location="mumbai" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/d4.jpg" alt="Della Resorts">
+                        <span class="venue-badge">Adventure</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">Della Resorts</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Lonavala, Maharashtra</p>
+                        <p class="venue-description">
+                            India's premier adventure resort with luxury accommodations, adventure activities, and stunning Sahyadri mountain views.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-mountain"></i> Hill Views</span>
+                            <span class="feature-tag"><i class="fas fa-parachute-box"></i> Adventure Park</span>
+                            <span class="feature-tag"><i class="fas fa-snowflake"></i> Snow Park</span>
+                            <span class="feature-tag"><i class="fas fa-gamepad"></i> Gaming Zone</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 200-350 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue 9 -->
+                <div class="venue-card" data-type="farmhouse" data-location="delhi" data-capacity="medium">
+                    <div class="venue-image">
+                        <img src="image/img2.jpg" alt="The Farm">
+                        <span class="venue-badge">Rustic</span>
+                        <div class="venue-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                    </div>
+                    <div class="venue-content">
+                        <h3 class="venue-title">The Farm at San Benito</h3>
+                        <p class="venue-location"><i class="fas fa-map-marker-alt"></i> Chattarpur, Delhi</p>
+                        <p class="venue-description">
+                            A charming farmhouse venue with rustic elegance, open lawns, and a peaceful countryside ambiance perfect for outdoor celebrations.
+                        </p>
+                        <div class="venue-features">
+                            <span class="feature-tag"><i class="fas fa-tractor"></i> Farm Setting</span>
+                            <span class="feature-tag"><i class="fas fa-tree"></i> Open Lawns</span>
+                            <span class="feature-tag"><i class="fas fa-fire"></i> Bonfire</span>
+                            <span class="feature-tag"><i class="fas fa-music"></i> Live Music</span>
+                        </div>
+                        <div class="venue-footer">
+                            <span class="venue-capacity"><i class="fas fa-users"></i> 150-300 Guests</span>
+                            <a href="contact.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NO RESULTS MESSAGE -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <h3>No Venues Found</h3>
+                <p>Try adjusting your filters to find more venues</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Can't Find the Perfect Venue?</h2>
+            <p style="font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 32px; opacity: 0.95;">Let our experts help you discover the ideal location for your dream wedding</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Contact Our Team</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Venue Filtering
+        const searchInput = document.getElementById('search');
+        const typeSelect = document.getElementById('venueType');
+        const locationSelect = document.getElementById('location');
+        const capacitySelect = document.getElementById('capacity');
+        const venueCards = document.querySelectorAll('.venue-card');
+        const noResults = document.getElementById('noResults');
+
+        function filterVenues() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedType = typeSelect.value;
+            const selectedLocation = locationSelect.value;
+            const selectedCapacity = capacitySelect.value;
+            
+            let visibleCount = 0;
+
+            venueCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                const cardType = card.dataset.type;
+                const cardLocation = card.dataset.location;
+                const cardCapacity = card.dataset.capacity;
+
+                const matchesSearch = cardText.includes(searchTerm);
+                const matchesType = !selectedType || cardType === selectedType;
+                const matchesLocation = !selectedLocation || cardLocation === selectedLocation;
+                const matchesCapacity = !selectedCapacity || cardCapacity === selectedCapacity;
+
+                if (matchesSearch && matchesType && matchesLocation && matchesCapacity) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterVenues);
+        typeSelect.addEventListener('change', filterVenues);
+        locationSelect.addEventListener('change', filterVenues);
+        capacitySelect.addEventListener('change', filterVenues);
+    </script>
+</body>
+</html>

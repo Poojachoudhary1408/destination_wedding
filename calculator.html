@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your destination wedding budget with our interactive pricing calculator - get instant estimates for your dream celebration.">
+    <title>Wedding Budget Calculator | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img4.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .calculator-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .form-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #1f1d1d;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .range-slider {
+            width: 100%;
+        }
+        
+        .range-value {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .results-panel {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 120px;
+        }
+        
+        .results-panel h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #1f1d1d;
+            text-align: center;
+        }
+        
+        .total-estimate {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .total-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .total-amount {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .breakdown-label {
+            color: #666;
+        }
+        
+        .breakdown-value {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .cta-box {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta-box p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .info-box {
+            background: rgba(139, 69, 19, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box p {
+            margin: 0;
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 1024px) {
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-panel {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-form {
+                padding: 30px 20px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wedding Budget Calculator</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Get an instant estimate for your dream destination wedding</p>
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="calculator-wrapper">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <div class="info-box">
+                        <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> This calculator provides an approximate estimate. Final costs may vary based on specific requirements, season, and vendor availability. Contact us for a detailed personalized quote.</p>
+                    </div>
+
+                    <form id="calculatorForm">
+                        <!-- Basic Details -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-clipboard-list"></i> Basic Details</h3>
+                            
+                            <div class="form-group">
+                                <label for="destination">Wedding Destination</label>
+                                <select id="destination" required>
+                                    <option value="">Select Destination</option>
+                                    <option value="goa">Goa</option>
+                                    <option value="udaipur">Udaipur</option>
+                                    <option value="jaipur">Jaipur</option>
+                                    <option value="kerala">Kerala</option>
+                                    <option value="delhi">Delhi NCR</option>
+                                    <option value="other">Other Location</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="venueType">Venue Type</label>
+                                <select id="venueType" required>
+                                    <option value="">Select Venue Type</option>
+                                    <option value="beach">Beach Resort</option>
+                                    <option value="palace">Heritage Palace</option>
+                                    <option value="resort">Luxury Resort</option>
+                                    <option value="hillstation">Hill Station</option>
+                                    <option value="farmhouse">Farmhouse</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guestCount">Number of Guests</label>
+                                <input type="range" id="guestCount" class="range-slider" min="50" max="500" value="150" step="10">
+                                <span class="range-value" id="guestCountValue">150 Guests</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="eventDays">Wedding Duration</label>
+                                <select id="eventDays" required>
+                                    <option value="1">1 Day (Main Ceremony Only)</option>
+                                    <option value="2" selected>2 Days (Ceremony + Reception)</option>
+                                    <option value="3">3 Days (Full Celebration)</option>
+                                    <option value="4">4+ Days (Extended Events)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-concierge-bell"></i> Services Required</h3>
+                            
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="decor" checked>
+                                    <label for="decor">Decor & Design</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="catering" checked>
+                                    <label for="catering">Catering</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="photography" checked>
+                                    <label for="photography">Photography</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="videography" checked>
+                                    <label for="videography">Videography</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="entertainment">
+                                    <label for="entertainment">Entertainment</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="makeup">
+                                    <label for="makeup">Makeup & Styling</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="transport">
+                                    <label for="transport">Guest Transport</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="accommodation">
+                                    <label for="accommodation">Guest Accommodation</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Budget Level -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-star"></i> Budget Level</h3>
+                            
+                            <div class="form-group">
+                                <select id="budgetLevel" required>
+                                    <option value="">Select Budget Level</option>
+                                    <option value="essential">Essential (Budget-Friendly)</option>
+                                    <option value="premium" selected>Premium (Mid-Range)</option>
+                                    <option value="luxury">Luxury (High-End)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="button" class="calculate-btn" onclick="calculateBudget()">
+                            <i class="fas fa-calculator"></i> Calculate Budget
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel">
+                    <h3>Your Estimated Budget</h3>
+                    
+                    <div class="total-estimate">
+                        <div class="total-label">Total Estimated Cost</div>
+                        <div class="total-amount" id="totalAmount">₹0</div>
+                    </div>
+
+                    <div id="breakdown">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Venue & Accommodation</span>
+                            <span class="breakdown-value" id="venueAmount">₹0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Catering</span>
+                            <span class="breakdown-value" id="cateringAmount">₹0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Decor & Design</span>
+                            <span class="breakdown-value" id="decorAmount">₹0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Photography & Video</span>
+                            <span class="breakdown-value" id="photoAmount">₹0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Additional Services</span>
+                            <span class="breakdown-value" id="additionalAmount">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="cta-box">
+                        <p>Want a detailed personalized quote?</p>
+                        <a href="contact.html" class="btn btn-primary" style="width: 100%; text-align: center;">Get Free Consultation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="calculator.html">Budget Calculator</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update guest count display
+        document.getElementById('guestCount').addEventListener('input', function() {
+            document.getElementById('guestCountValue').textContent = this.value + ' Guests';
+        });
+
+        function calculateBudget() {
+            // Get form values
+            const destination = document.getElementById('destination').value;
+            const venueType = document.getElementById('venueType').value;
+            const guestCount = parseInt(document.getElementById('guestCount').value);
+            const eventDays = parseInt(document.getElementById('eventDays').value);
+            const budgetLevel = document.getElementById('budgetLevel').value;
+
+            if (!destination || !venueType || !budgetLevel) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Base costs per guest
+            const baseCosts = {
+                essential: { venue: 2000, catering: 1500, decor: 800, photo: 500 },
+                premium: { venue: 4000, catering: 2500, decor: 1500, photo: 1000 },
+                luxury: { venue: 8000, catering: 4000, decor: 3000, photo: 2000 }
+            };
+
+            const costs = baseCosts[budgetLevel];
+
+            // Calculate base amounts
+            let venueAmount = costs.venue * guestCount * eventDays;
+            let cateringAmount = costs.catering * guestCount * eventDays;
+            let decorAmount = costs.decor * guestCount;
+            let photoAmount = costs.photo * guestCount;
+            let additionalAmount = 0;
+
+            // Adjust for destination
+            const destinationMultiplier = {
+                'goa': 1.2,
+                'udaipur': 1.3,
+                'jaipur': 1.25,
+                'kerala': 1.15,
+                'delhi': 1.1,
+                'other': 1.0
+            };
+            const multiplier = destinationMultiplier[destination] || 1.0;
+
+            venueAmount *= multiplier;
+            cateringAmount *= multiplier;
+
+            // Add selected services
+            if (document.getElementById('decor').checked) {
+                // Already included
+            } else {
+                decorAmount = 0;
+            }
+
+            if (document.getElementById('catering').checked) {
+                // Already included
+            } else {
+                cateringAmount = 0;
+            }
+
+            if (document.getElementById('photography').checked && document.getElementById('videography').checked) {
+                // Already included
+            } else if (document.getElementById('photography').checked) {
+                photoAmount *= 0.6;
+            } else if (document.getElementById('videography').checked) {
+                photoAmount *= 0.7;
+            } else {
+                photoAmount = 0;
+            }
+
+            if (document.getElementById('entertainment').checked) {
+                additionalAmount += 150000 * eventDays;
+            }
+
+            if (document.getElementById('makeup').checked) {
+                additionalAmount += 80000;
+            }
+
+            if (document.getElementById('transport').checked) {
+                additionalAmount += guestCount * 500;
+            }
+
+            if (document.getElementById('accommodation').checked) {
+                additionalAmount += guestCount * 3000 * eventDays;
+            }
+
+            // Calculate total
+            const total = venueAmount + cateringAmount + decorAmount + photoAmount + additionalAmount;
+
+            // Format and display
+            document.getElementById('totalAmount').textContent = '₹' + formatNumber(Math.round(total));
+            document.getElementById('venueAmount').textContent = '₹' + formatNumber(Math.round(venueAmount));
+            document.getElementById('cateringAmount').textContent = '₹' + formatNumber(Math.round(cateringAmount));
+            document.getElementById('decorAmount').textContent = '₹' + formatNumber(Math.round(decorAmount));
+            document.getElementById('photoAmount').textContent = '₹' + formatNumber(Math.round(photoAmount));
+            document.getElementById('additionalAmount').textContent = '₹' + formatNumber(Math.round(additionalAmount));
+
+            // Scroll to results on mobile
+            if (window.innerWidth < 1024) {
+                document.querySelector('.results-panel').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function formatNumber(num) {
+            if (num >= 10000000) {
+                return (num / 10000000).toFixed(2) + ' Cr';
+            } else if (num >= 100000) {
+                return (num / 100000).toFixed(2) + ' L';
+            } else {
+                return num.toLocaleString('en-IN');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read what our happy couples say about their dream destination weddings planned by DreamKnot Weddings.">
+    <title>Client Testimonials & Reviews | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img4.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 60px;
+            color: var(--primary-color);
+            opacity: 0.1;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .rating i {
+            color: #FFD700;
+            font-size: 18px;
+        }
+        
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .author-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: #1f1d1d;
+            font-size: 1.1rem;
+        }
+        
+        .author-details {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .wedding-location {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #666;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .video-testimonial {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img2.jpg') center/cover;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .play-btn i {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>What Our Couples Say</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Real stories from real weddings - hear from our happy couples</p>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section-padding" style="padding-top: 60px;">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Average Rating</div>
+                    <div class="rating" style="justify-content: center; margin-top: 15px;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Couples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Recommend Us</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterTestimonials('all')">All Reviews</button>
+                <button class="filter-btn" onclick="filterTestimonials('goa')">Goa</button>
+                <button class="filter-btn" onclick="filterTestimonials('udaipur')">Udaipur</button>
+                <button class="filter-btn" onclick="filterTestimonials('jaipur')">Jaipur</button>
+                <button class="filter-btn" onclick="filterTestimonials('kerala')">Kerala</button>
+                <button class="filter-btn" onclick="filterTestimonials('other')">Other Locations</button>
+            </div>
+
+            <!-- TESTIMONIALS GRID -->
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" data-location="udaipur">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "DreamKnot Weddings made our destination wedding in Udaipur absolutely magical! Every detail was perfect, from the venue to the decorations. They handled everything so professionally that we could just enjoy our special day without any stress. Our guests are still talking about how beautiful everything was!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s1.jpg" alt="Priya & Rahul" class="author-image">
+                        <div class="author-info">
+                            <h4>Priya & Rahul</h4>
+                            <p class="author-details">December 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Udaipur, Rajasthan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" data-location="goa">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "We wanted a beach wedding in Goa and DreamKnot exceeded all our expectations! The team was incredibly responsive, creative, and made sure our vision came to life. The sunset ceremony was breathtaking, and the reception was a dream. Thank you for making our day perfect!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s2.jpg" alt="Ananya & Vikram" class="author-image">
+                        <div class="author-info">
+                            <h4>Ananya & Vikram</h4>
+                            <p class="author-details">November 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Goa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" data-location="jaipur">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Planning a royal wedding in Jaipur seemed daunting, but DreamKnot made it effortless. From the palace venue to the traditional Rajasthani decor, everything was spectacular. Our families and friends had an amazing time, and we have memories to cherish forever!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s3.jpg" alt="Neha & Arjun" class="author-image">
+                        <div class="author-info">
+                            <h4>Neha & Arjun</h4>
+                            <p class="author-details">October 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card" data-location="kerala">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Our backwater wedding in Kerala was like a fairy tale! DreamKnot's attention to detail and understanding of our vision was remarkable. The houseboat ceremony, the traditional Kerala cuisine, and the beautiful decor all came together perfectly. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s4.jpg" alt="Divya & Karthik" class="author-image">
+                        <div class="author-info">
+                            <h4>Divya & Karthik</h4>
+                            <p class="author-details">September 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Kerala</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card" data-location="goa">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "From our first consultation to the last dance, DreamKnot was with us every step of the way. They managed our 3-day wedding celebration in Goa flawlessly. The coordination, vendors, and execution were all top-notch. Worth every penny!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/d1.jpg" alt="Riya & Sameer" class="author-image">
+                        <div class="author-info">
+                            <h4>Riya & Sameer</h4>
+                            <p class="author-details">August 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Goa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card" data-location="udaipur">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The team at DreamKnot is simply amazing! They turned our dream of a lakeside palace wedding in Udaipur into reality. Every moment was picture-perfect, and they handled all our guest logistics seamlessly. We couldn't have asked for better planners!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/d2.jpg" alt="Kavya & Rohan" class="author-image">
+                        <div class="author-info">
+                            <h4>Kavya & Rohan</h4>
+                            <p class="author-details">July 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Udaipur, Rajasthan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 7 -->
+                <div class="testimonial-card" data-location="other">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "We chose Jim Corbett for our wedding, and DreamKnot made it an unforgettable experience. The natural beauty combined with their creative decor was stunning. They managed everything from guest accommodation to wildlife activities. Absolutely professional!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/d3.jpg" alt="Meera & Aditya" class="author-image">
+                        <div class="author-info">
+                            <h4>Meera & Aditya</h4>
+                            <p class="author-details">June 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Jim Corbett, Uttarakhand</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 8 -->
+                <div class="testimonial-card" data-location="jaipur">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "DreamKnot planned our heritage wedding at a fort in Jaipur, and it was beyond our wildest dreams. The royal ambiance, the traditional ceremonies, and the modern touches they added were perfect. Our guests are still raving about it months later!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/d4.jpg" alt="Simran & Kabir" class="author-image">
+                        <div class="author-info">
+                            <h4>Simran & Kabir</h4>
+                            <p class="author-details">May 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 9 -->
+                <div class="testimonial-card" data-location="goa">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Best decision ever to hire DreamKnot for our Goa wedding! They understood exactly what we wanted - a relaxed beach vibe with elegant touches. The sangeet night on the beach was magical. Thank you for making our celebration so special!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/img2.jpg" alt="Pooja & Nikhil" class="author-image">
+                        <div class="author-info">
+                            <h4>Pooja & Nikhil</h4>
+                            <p class="author-details">April 2025</p>
+                            <p class="wedding-location"><i class="fas fa-map-marker-alt"></i> Goa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO TESTIMONIALS -->
+    <section class="section-padding" style="background: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Video Testimonials</h2>
+            <p class="section-subtitle">Hear directly from our happy couples</p>
+            
+            <div class="video-testimonial">
+                <div class="play-btn">
+                    <i class="fas fa-play"></i>
+                </div>
+                <h3 style="font-size: 2rem; margin-bottom: 10px;">Watch Our Couples' Stories</h3>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Real emotions, real celebrations, real memories</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Ready to Create Your Own Love Story?</h2>
+            <p style="font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 32px; opacity: 0.95;">Join hundreds of happy couples who trusted us with their dream wedding</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Start Planning Today</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        function filterTestimonials(location) {
+            const cards = document.querySelectorAll('.testimonial-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (location === 'all' || card.dataset.location === location) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

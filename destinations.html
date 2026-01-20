@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore top wedding destinations in India - Goa, Udaipur, Jaipur, Kerala and more. Find your perfect destination wedding location.">
+    <title>Wedding Destinations in India | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img2.jpg') center/cover;
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb a {
+            color: white;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: sticky;
+            top: 120px;
+            z-index: 100;
+        }
+        
+        .filter-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            align-items: end;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .destination-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .destination-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        
+        .destination-card:hover .destination-image img {
+            transform: scale(1.1);
+        }
+        
+        .destination-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(183, 110, 121, 0.95);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .destination-rating {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .destination-rating i {
+            color: #ffc107;
+        }
+        
+        .destination-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .destination-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #1f1d1d;
+        }
+        
+        .destination-location {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .destination-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .destination-features {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .feature-item i {
+            color: var(--primary-color);
+        }
+        
+        .destination-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .price-tag {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .price-tag small {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-section {
+                position: static;
+            }
+        }
+
+        .loading-grid {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="image/logo_wed.png" alt="DreamKnot Weddings Logo">
+                <span class="logo-text">DreamKnot</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html" class="active">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wedding Destinations</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Destinations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINATIONS CONTENT -->
+    <section class="section-padding">
+        <div class="container">
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-group">
+                    <div>
+                        <label for="search">Search Destination</label>
+                        <input type="text" id="search" placeholder="Search by name or location...">
+                    </div>
+                    <div>
+                        <label for="type">Destination Type</label>
+                        <select id="type">
+                            <option value="">All Types</option>
+                            <option value="beach">Beach</option>
+                            <option value="palace">Palace/Heritage</option>
+                            <option value="hill">Hill Station</option>
+                            <option value="city">City</option>
+                            <option value="international">International</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="budget">Budget Range</label>
+                        <select id="budget">
+                            <option value="">All Budgets</option>
+                            <option value="low">Under ₹5 Lakhs</option>
+                            <option value="medium">₹5-10 Lakhs</option>
+                            <option value="high">₹10-20 Lakhs</option>
+                            <option value="luxury">₹20+ Lakhs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="visibility: hidden;">Action</label>
+                        <button class="btn btn-primary" onclick="applyFilters()" style="width: 100%;">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destinations Grid -->
+            <div class="grid-3" id="destinationsGrid">
+                <!-- Destinations will be injected here by JavaScript -->
+                <div class="loading-grid">Loading Destinations...</div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" style="display: none; text-align: center; padding: 60px 20px;">
+                <i class="fas fa-search" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                <h3 style="color: #666; margin-bottom: 12px;">No destinations found</h3>
+                <p style="color: #999;">Try adjusting your filters or search criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 16px;">Can't Find Your Dream Destination?</h2>
+            <p style="font-size: 1.15rem; margin-bottom: 28px; opacity: 0.95;">Let us help you discover the perfect location for your wedding</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700;">Contact Our Experts</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Use destinationsData from main.js
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof destinationsData !== 'undefined') {
+                renderAllDestinations(destinationsData);
+                
+                // Check for URL search param
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchParam = urlParams.get('search');
+                if (searchParam) {
+                    document.getElementById('search').value = searchParam;
+                    applyFilters();
+                }
+            }
+        });
+
+        function renderAllDestinations(data) {
+            const grid = document.getElementById('destinationsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = data.map(dest => `
+                <div class="destination-card" data-type="${dest.type}" data-budget="${dest.budget}">
+                    <div class="destination-image">
+                        <img src="${dest.image}" alt="${dest.title} Wedding Destination">
+                        <span class="destination-badge">${dest.type.charAt(0).toUpperCase() + dest.type.slice(1)}</span>
+                        <span class="destination-rating"><i class="fas fa-star"></i> ${dest.rating}</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">${dest.title}</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> ${dest.location}</p>
+                        <p class="destination-description">${dest.description}</p>
+                        <div class="destination-features">
+                            <span class="feature-item"><i class="fas fa-hotel"></i> ${dest.venueCount} Venues</span>
+                            <span class="feature-item"><i class="fas fa-users"></i> ${dest.guests} Guests</span>
+                            <span class="feature-item"><i class="fas fa-tags"></i> ${dest.price}+</span>
+                        </div>
+                        <div class="destination-footer">
+                            <div class="price-tag">${dest.price}+ <small>starting</small></div>
+                            <a href="destination-detail.html?location=${dest.id}" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter functionality
+        function applyFilters() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const typeFilter = document.getElementById('type').value;
+            const budgetFilter = document.getElementById('budget').value;
+            
+            const cards = document.querySelectorAll('.destination-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.destination-title').textContent.toLowerCase();
+                const location = card.querySelector('.destination-location').textContent.toLowerCase();
+                const type = card.dataset.type;
+                const budget = card.dataset.budget;
+                
+                const matchesSearch = !searchTerm || title.includes(searchTerm) || location.includes(searchTerm);
+                const matchesType = !typeFilter || type === typeFilter;
+                const matchesBudget = !budgetFilter || budget === budgetFilter;
+                
+                if (matchesSearch && matchesType && matchesBudget) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            const noResults = document.getElementById('noResults');
+            if (noResults) {
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        }
+        
+        // Real-time search
+        document.getElementById('search').addEventListener('input', applyFilters);
+        document.getElementById('type').addEventListener('change', applyFilters);
+        document.getElementById('budget').addEventListener('change', applyFilters);
+    </script>
+</body>
+</html>

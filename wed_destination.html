@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .top-header {
+        background-color: #fff;
+        padding: 15px 30px;
+        display: grid;
+        grid-template-columns: 1fr 4fr 1fr;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .logo img {
+        height: 100px;
+      }
+      .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+      .top-header nav a {
+        margin: 10px;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 26px;
+      }
+
+      .top-header nav a:hover {
+        text-decoration: underline;
+      }
+
+      .icons {
+        color: black;
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        font-size: 26px;
+      }
+      footer {
+        background-color: #00000020;
+        padding: 40px 60px;
+        margin-bottom: 30px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: auto;
+        padding-bottom: 40px;
+        text-align: center;
+      }
+
+      .footer-content h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+
+      .cities {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        text-align: left;
+        justify-content: center;
+      }
+
+      .cities ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      .cities ul li {
+        margin: 8px 0;
+      }
+
+      .cities ul li:hover {
+        color: #c94f4f;
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 60px;
+      }
+
+      .footer-left h4 {
+        font-weight: bold;
+        margin-bottom: 18px;
+      }
+
+      .footer-left ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-left a {
+        color: #00000090;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-right {
+        text-align: right;
+      }
+
+      .footer-logo h2 {
+        font-size: 26px;
+      }
+
+      .footer-logo p {
+        font-size: 13px;
+        color: #aaa;
+      }
+
+      .contact p {
+        font-size: 14px;
+        margin: 5px;
+      }
+
+      .contact i {
+        margin-right: 8px;
+      }
+
+      hr {
+        border: 0.5px solid #b7b4b4;
+        margin: 30px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+      }
+
+      .socials .icons {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .socials .icons a {
+        text-decoration: none;
+        margin: 0 10px;
+        color: #fff;
+        font-size: 18px;
+        background: #444;
+        padding: 12px;
+        border-radius: 50%;
+      }
+
+      .socials .icons a:hover {
+        background: #666;
+      }
+
+      .wed-container {
+        width: 100%;
+        margin-bottom: 80px;
+        position: relative;
+      }
+
+      .wed-img {
+        position: relative;
+        z-index: 0;
+      }
+      .wed-img::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      .wed-img img {
+        width: 100%;
+        height: 800px;
+      }
+
+      .heading {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size: 36px;
+        font-weight: bold;
+        border-radius: 10px;
+        z-index: 2;
+      }
+
+      .grid-container1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 20px 60px;
+        margin-bottom: 20px;
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .img:hover {
+        transform: scale(1.05);
+      }
+
+      .grid-container2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 20px 60px;
+        margin-bottom: 20px;
+      }
+
+      .grid-container3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 20px 60px;
+        margin-bottom: 20px;
+      }
+
+      .grid-container4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 20px 60px;
+        margin-bottom: 40px;
+      }
+
+      .img img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .img {
+        position: relative;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.4s ease;
+      }
+
+      .img:hover .name {
+        transform: translateY(-5px);
+      }
+
+      .img .name {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        font-size: 24px;
+      }
+
+      .section1 {
+        margin-top: 150px;
+        padding: 40px 60px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .section1 h1 {
+        font-size: 40px;
+      }
+
+      .blog {
+        padding: 40px 60px;
+      }
+
+      .blog {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        margin-bottom: 40px;
+        gap: 70px;
+      }
+
+      .international {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px #00000090;
+        overflow: hidden;
+        max-width: 300px;
+      }
+
+      .international:hover {
+        transform: translateY(-5px);
+      }
+
+      .international img {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+        padding: 20px 30px;
+      }
+
+      .cities-name {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cities-name h4 {
+        font-size: 20px;
+        color: #111;
+        overflow: hidden;
+      }
+
+      .cities-name p {
+        align-items: center;
+        font-size: 16px;
+        color: #555;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        background-image: radial-gradient(
+          circle farthest-corner at 10% 20%,
+          rgba(249, 232, 51, 1) 0%,
+          rgb(245, 204, 100) 100.2%
+        );
+        padding: 150px 100px;
+        margin: 200px 300px;
+        transition: transform 0.5s ease-in-out;
+        border-radius: 20px;
+      }
+
+      .container:hover {
+        transform: scale(1.25);
+      }
+
+      .text p {
+        font-size: 24px;
+        margin-bottom: 50px;
+        text-align: justify;
+      }
+
+      .enquirebtn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .enquirebtn button {
+        padding: 10px 30px;
+        font-size: 20px;
+        border-radius: 20px;
+        border: none;
+      }
+      @media (max-width: 520px) {
+        .top-header {
+          grid-template-columns: 1fr 1fr;
+          padding: 10px 15px;
+          gap: 10px;
+        }
+
+        .logo {
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .logo img {
+          height: 60px;
+        }
+
+        .menu {
+          display: none;
+        }
+
+        .icons {
+          justify-content: flex-end;
+          font-size: 20px;
+          gap: 10px;
+        }
+
+        .heading {
+          font-size: 20px;
+          padding: 10px;
+        }
+
+        .wed-img img {
+          height: 300px;
+        }
+
+        .grid-container1,
+        .grid-container2,
+        .grid-container3,
+        .grid-container4,
+        .blog {
+          grid-template-columns: 1fr;
+          padding: 10px 15px;
+          gap: 20px;
+        }
+
+        .section1 {
+          margin-top: 60px;
+          padding: 20px;
+        }
+
+        .section1 h1 {
+          font-size: 24px;
+          text-align: center;
+        }
+
+        .international {
+          max-width: 100%;
+        }
+
+        .international img {
+          padding: 10px;
+          height: auto;
+        }
+
+        .cities-name h4 {
+          font-size: 16px;
+        }
+
+        .cities-name p {
+          font-size: 14px;
+        }
+
+        .container {
+          margin: 40px 20px;
+          padding: 40px 20px;
+          border-radius: 10px;
+        }
+
+        .text p {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+
+        .enquirebtn {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .enquirebtn button {
+          font-size: 16px;
+          padding: 8px 20px;
+        }
+
+        footer {
+          padding: 20px;
+        }
+
+        .footer-content h2 {
+          font-size: 20px;
+        }
+
+        .footer-top {
+          flex-direction: column;
+          padding: 0 15px;
+          gap: 20px;
+          text-align: center;
+        }
+
+        .footer-left ul {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .footer-left a {
+          font-size: 14px;
+        }
+        .footer-right{
+          text-align: center;
+        }
+
+        .footer-logo h2 {
+          font-size: 20px;
+        }
+
+        .footer-logo p,
+        .contact p {
+          font-size: 13px;
+        }
+
+        .cities {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+          padding: 10px;
+        }
+
+        .socials .icons {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .socials .icons a {
+          font-size: 16px;
+          padding: 10px;
+        }
+
+        hr {
+          margin: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-header">
+      <div class="logo">
+        <img src="assets/image/logo_wed.png" alt="DreamKnot Logo" />
+      </div>
+      <div class="menu">
+        <nav>
+          <a href="wed-index.html">Home</a>
+          <a href="wed_destination.html">Top Wedding Destination</a>
+          <a href="wedding_expereince.html">Wedding experience</a>
+          <a href="#blog">Blogs</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+      </div>
+      <div class="icons">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+    </header>
+    <div class="wed-container">
+      <div class="wed-img">
+        <img src="assets/image/best-destination-weddings-2.jpg" />
+      </div>
+      <div class="heading">
+        <h1>Top Wedding destination</h1>
+      </div>
+    </div>
+    <div class="grid-container1">
+      <div class="img">
+        <img src="assets/image/destination1.jpeg" />
+        <div class="name">Kashmir</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/goa.jpg" />
+        <div class="name">Goa</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/agra.jpeg" />
+        <div class="name">Agra</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/banglore.jpeg" />
+        <div class="name">Banglore</div>
+      </div>
+    </div>
+    <div class="grid-container2">
+      <div class="img">
+        <img src="assets/image/chandigarh.jpeg" />
+        <div class="name">chandigarh</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/rishikesh.jpeg" />
+        <div class="name">Rishikesh</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/amritsar.jpeg" />
+        <div class="name">Amritsar</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/kasuli.jpg" />
+        <div class="name">Kasuli</div>
+      </div>
+    </div>
+    <div class="grid-container3">
+      <div class="img">
+        <img src="assets/image/bikaner.jpg" />
+        <div class="name">Bikaner</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/chennai.jpg" />
+        <div class="name">Chennai</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/mahableshwar.jpeg" />
+        <div class="name">Mahabaleshwar</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/jaipur.jpeg" />
+        <div class="name">Jaipur</div>
+      </div>
+    </div>
+    <div class="grid-container4">
+      <div class="img">
+        <img src="assets/image/mussorie.jpeg" />
+        <div class="name">Mussoorie</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/udaipur.jpeg" />
+        <div class="name">Udaipur</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/shimla.jpeg" />
+        <div class="name">Shimla</div>
+      </div>
+      <div class="img">
+        <img src="assets/image/mumbai.jpeg" />
+        <div class="name">Mumbai</div>
+      </div>
+    </div>
+    <section>
+      <div class="section1">
+        <h1>Looking For More destination</h1>
+      </div>
+      <div class="blog">
+        <div class="international">
+          <img src="assets/image/shrilanka.png" />
+          <div class="cities-name">
+            <h4>shrilanka</h4>
+            <p>wedding</p>
+          </div>
+        </div>
+        <div class="international">
+          <img src="assets/image/dubai.jpg" />
+          <div class="cities-name">
+            <h4>Dubai</h4>
+            <p>wedding</p>
+          </div>
+        </div>
+        <div class="international">
+          <img src="assets/image/thailand.jpg" />
+          <div class="cities-name">
+            <h4>Thailand</h4>
+            <p>wedding</p>
+          </div>
+        </div>
+        <div class="international">
+          <img src="assets/image/abudbhai.jpg" />
+          <div class="cities-name">
+            <h4>Abu Dhabi</h4>
+            <p>wedding</p>
+          </div>
+        </div>
+        <div class="international">
+          <img src="assets/image/paris.avif" />
+          <div class="cities-name">
+            <h4>Paris</h4>
+            <p>wedding</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="text">
+        <p>
+          Let Us Make Your Dream Come True. From breathtaking venues to seamless
+          planning, we’re here to create unforgettable moments.
+        </p>
+      </div>
+      <div class="enquirebtn">
+        <button type="button">Enquire Now</button>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <h2>Top Wedding Destinations</h2>
+        <div class="cities">
+          <ul>
+            <li>Agra</li>
+            <li>Alibaug</li>
+            <li>Amritsar</li>
+            <li>Bangalore</li>
+            <li>Bikaner</li>
+            <li>Chandigarh</li>
+            <li>Chennai</li>
+            <li>Delhi</li>
+          </ul>
+          <ul>
+            <li>Diu</li>
+            <li>Goa</li>
+            <li>Guwahati</li>
+            <li>Hyderabad</li>
+            <li>Jaipur</li>
+            <li>Jaisalmer</li>
+            <li>Jodhpur</li>
+          </ul>
+          <ul>
+            <li>Kasauli</li>
+            <li>Kashmir</li>
+            <li>Kolkata</li>
+            <li>Mahabaleshwar</li>
+            <li>Mamallapuram</li>
+            <li>Mumbai</li>
+            <li>Mussoorie</li>
+          </ul>
+          <ul>
+            <li>Ooty</li>
+            <li>Pushkar</li>
+            <li>Ranthambore</li>
+            <li>Rishikesh</li>
+            <li>Shimla</li>
+            <li>Silvassa</li>
+            <li>Udaipur</li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-top">
+        <div class="footer-left">
+          <h4>GET INSPIRED</h4>
+          <ul>
+            <li><a href="#">Photos</a></li>
+            <li><a href="#">Real Weddings</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-right">
+          <div class="footer-logo">
+            <h2>Wedding<span class="highlight">z</span>.in</h2>
+            <p>Call our 24-hour helpline</p>
+          </div>
+          <div class="contact">
+            <p><i class="fas fa-phone"></i> 80-48-12-32-72</p>
+            <p><i class="fas fa-envelope"></i> info.weddingz@oyorooms.com</p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-bottom">
+        <div class="socials">
+          <h4>FOLLOW US</h4>
+          <div class="icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our stunning wedding gallery featuring real destination weddings planned by DreamKnot Weddings across India.">
+    <title>Wedding Gallery | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img4.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #666;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            height: 400px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: 0.4s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .gallery-location {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .gallery-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            transition: 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            transition: 0.3s;
+        }
+        
+        .lightbox-nav:hover {
+            background: white;
+        }
+        
+        .lightbox-prev {
+            left: 30px;
+        }
+        
+        .lightbox-next {
+            right: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                height: 300px;
+            }
+            
+            .gallery-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wedding Gallery</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Explore our portfolio of stunning destination weddings</p>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section-padding">
+        <div class="container">
+            <!-- Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Weddings</button>
+                <button class="filter-btn" data-filter="beach">Beach Weddings</button>
+                <button class="filter-btn" data-filter="palace">Palace Weddings</button>
+                <button class="filter-btn" data-filter="resort">Resort Weddings</button>
+                <button class="filter-btn" data-filter="destination">Destination</button>
+                <button class="filter-btn" data-filter="decor">Decor & Setup</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item" data-category="beach">
+                    <img src="image/img2.jpg" alt="Beach Wedding">
+                    <span class="gallery-category">Beach</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Sunset Beach Ceremony</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Goa</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item" data-category="palace">
+                    <img src="image/img4.jpg" alt="Palace Wedding">
+                    <span class="gallery-category">Palace</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Royal Palace Celebration</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Udaipur</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" data-category="resort">
+                    <img src="image/3.jpg" alt="Resort Wedding">
+                    <span class="gallery-category">Resort</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Luxury Resort Wedding</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Jaipur</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" data-category="decor">
+                    <img src="image/s1.jpg" alt="Wedding Decor">
+                    <span class="gallery-category">Decor</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Floral Paradise Setup</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Delhi</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item" data-category="destination">
+                    <img src="image/s2.jpg" alt="Destination Wedding">
+                    <span class="gallery-category">Destination</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Hillside Romance</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Lonavala</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" data-category="beach">
+                    <img src="image/s3.jpg" alt="Beach Wedding">
+                    <span class="gallery-category">Beach</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Tropical Beach Bliss</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Kerala</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item" data-category="palace">
+                    <img src="image/s4.jpg" alt="Palace Wedding">
+                    <span class="gallery-category">Palace</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Heritage Palace Grandeur</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Jaipur</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item" data-category="resort">
+                    <img src="image/img6.jpg" alt="Resort Wedding">
+                    <span class="gallery-category">Resort</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Garden Resort Elegance</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Manesar</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item" data-category="decor">
+                    <img src="image/d1.jpg" alt="Wedding Decor">
+                    <span class="gallery-category">Decor</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Elegant Mandap Design</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Mumbai</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 10 -->
+                <div class="gallery-item" data-category="destination">
+                    <img src="image/d2.jpg" alt="Destination Wedding">
+                    <span class="gallery-category">Destination</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Pink City Celebration</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Jaipur</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 11 -->
+                <div class="gallery-item" data-category="beach">
+                    <img src="image/d3.jpg" alt="Beach Wedding">
+                    <span class="gallery-category">Beach</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Seaside Serenity</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Goa</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 12 -->
+                <div class="gallery-item" data-category="resort">
+                    <img src="image/d4.jpg" alt="Resort Wedding">
+                    <span class="gallery-category">Resort</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Mountain View Resort</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Lonavala</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 13 -->
+                <div class="gallery-item" data-category="palace">
+                    <img src="image/h1.jpg" alt="Palace Wedding">
+                    <span class="gallery-category">Palace</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Regal Palace Affair</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Udaipur</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 14 -->
+                <div class="gallery-item" data-category="decor">
+                    <img src="image/h3.jpg" alt="Wedding Decor">
+                    <span class="gallery-category">Decor</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Luxury Decor Setup</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Delhi NCR</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 15 -->
+                <div class="gallery-item" data-category="destination">
+                    <img src="image/h4.jpg" alt="Destination Wedding">
+                    <span class="gallery-category">Destination</span>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Nature's Paradise</h3>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt"></i> Jim Corbett</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Want Your Wedding Featured Here?</h2>
+            <p style="font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 32px; opacity: 0.95;">Let us create a magical celebration that you'll cherish forever</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Start Planning Today</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Gallery Image">
+        </div>
+        <div class="lightbox-nav lightbox-next" onclick="changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: hidden; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        let currentImageIndex = 0;
+        const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentImageIndex = index;
+                lightboxImage.src = images[index];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+            lightboxImage.src = images[currentImageIndex];
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
+        // Close lightbox when clicking outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+    </script>
+</body>
+</html>

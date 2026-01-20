@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience the magic of destination weddings in India - from royal palaces to serene beaches.">
+    <title>Wedding Experience in India | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img6.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .experience-section {
+            padding: 80px 0;
+        }
+
+        .intro-text {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .content-grid.reverse {
+            direction: rtl;
+        }
+
+        .content-grid.reverse > * {
+            direction: ltr;
+        }
+
+        .grid-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+
+        .grid-text h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .grid-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .grid-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .grid-images img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-images img:hover {
+            transform: scale(1.02);
+        }
+
+        .international-destinations {
+            background: #f9f9f9;
+            padding: 80px 0;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .dest-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .dest-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dest-info h4 {
+            font-size: 1.25rem;
+            color: #1f1d1d;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+
+        .dest-info p {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .grid-text h2 { font-size: 2rem; }
+            .content-grid.reverse { direction: ltr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wedding Experience in India</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Discover the magic of celebrating your love in a land of rich traditions</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="intro-text">
+                <p>
+                    Are there wedding bells ringing for you or your loved one, and unclear how and where to do it? Don’t fret! We have got you covered. With destination weddings trending worldwide, you can plan one in the beautiful landscapes of India. The rich traditions and diverse culture of our country will add a spark to your auspicious occasion. Imagine having vibrant celebrations with scenic beauty in the backdrop. Indeed, it is a perfect setting for your special day!
+                </p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="content-grid">
+                <div class="grid-text">
+                    <h2>India - A Destination Wedding Paradise</h2>
+                    <p>
+                        India embodies unique traditions in its diverse cultures. It has breathtaking views of the mighty mountains, pristine beaches, and majestic palaces that add to its glamour. It is becoming a preferred destination wedding choice for couples.
+                    </p>
+                    
+                    <h4>Unique traditions coupled with rich culture</h4>
+                    <p>
+                        Each state of India takes pride in its age-old traditions backed by the beliefs and sentiments of its ancestors. The festivities, beginning from Haldi, Mehendi, and Sangeet to Baraat, Pheras, and Vidai, symbolise the beauty of the vibrant and splendid Indian culture.
+                    </p>
+                    
+                    <h4>Panoramic Locations</h4>
+                    <p>
+                        From the tropical beaches of Goa to the royal forts in Rajasthan and the serene backwaters of Kerala, each destination promises an enchanting wedding experience you and your guests will remember forever.
+                    </p>
+                </div>
+                <div class="grid-images">
+                    <img src="image/3haldi.webp" alt="Traditional Haldi Ceremony">
+                    <img src="image/Rajasthan-wedding3.jpg" alt="Rajasthan Wedding">
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="content-grid reverse">
+                <div class="grid-text">
+                    <h2>Experiences to Look For</h2>
+                    
+                    <h4>Palatial Grandeur</h4>
+                    <p>
+                        The regal cities of Udaipur and Jodhpur offer revamped forts and palaces serving as destination wedding resorts. The magnificent architecture and luxurious atmosphere are perfect for those dreaming of an imperial experience.
+                    </p>
+                    
+                    <h4>Beachside Magic</h4>
+                    <p>
+                        Host a destination wedding on the sandy Anjuna and Calangute beaches of Goa or the pristine beaches of Kerala. Imagine a beautiful sunset with green-blue waters shimmering in your wedding pictures.
+                    </p>
+                    
+                    <h4>Mountain Serenity</h4>
+                    <p>
+                        Head to the snowy mountains of Kasauli, Manali, Shimla, or Gulmarg to solemnise your wedding across the cold landscapes and literal paradise on earth.
+                    </p>
+                </div>
+                <div class="grid-images">
+                    <img src="image/Royal-Palace-Wedding-in-Udaipur-or-Jodhpur3.jpg" alt="Royal Palace Wedding">
+                    <img src="image/Indian-Wedding-Feast3.jpg" alt="Indian Wedding Feast">
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="content-grid">
+                <div class="grid-text">
+                    <h2>Planning Your Dream Day</h2>
+                    <p>
+                        A destination wedding is synonymous with an exotic location and aesthetically decorated luxury wedding venues. Finalising a site takes thoughtful planning.
+                    </p>
+                    
+                    <h4>Mindful Budgeting</h4>
+                    <p>
+                        Setting a budget for a destination wedding in India is a prudent decision. Yet, be flexible to accommodate deviations as you go along with the desire to give lavish experiences to your guests.
+                    </p>
+                    
+                    <h4>Guest Comfort</h4>
+                    <p>
+                        Preparing a guest list well in advance sets your search direction toward a property that comfortably accommodates everyone. Confirmation of guest lists helps in making seamless travel and accommodation arrangements.
+                    </p>
+                </div>
+                <div class="grid-images">
+                    <img src="image/wedding-planing3.jpeg" alt="Wedding Planning">
+                    <img src="image/Backwaters-Wedding-in-Kerala3.jpg" alt="Kerala Backwaters Wedding">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERNATIONAL SECTION -->
+    <section class="international-destinations">
+        <div class="container">
+            <h2 class="section-title">Beyond Borders</h2>
+            <p class="section-subtitle">Exotic International Wedding Destinations</p>
+            
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <img src="image/shrilanka.png" alt="Sri Lanka">
+                    <div class="dest-info">
+                        <h4>Sri Lanka</h4>
+                        <p>Island Paradise</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="image/dubai.jpg" alt="Dubai">
+                    <div class="dest-info">
+                        <h4>Dubai</h4>
+                        <p>Modern Luxury</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="image/thailand.jpg" alt="Thailand">
+                    <div class="dest-info">
+                        <h4>Thailand</h4>
+                        <p>Tropical Bliss</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="image/abudbhai.jpg" alt="Abu Dhabi">
+                    <div class="dest-info">
+                        <h4>Abu Dhabi</h4>
+                        <p>Elegant Opulence</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="image/paris.avif" alt="Paris">
+                    <div class="dest-info">
+                        <h4>Paris</h4>
+                        <p>City of Love</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

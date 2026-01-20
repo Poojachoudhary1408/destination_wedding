@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DreamKnot Weddings - Premier destination wedding planner in India. Create unforgettable memories at stunning locations across India and beyond.">
+    <meta name="keywords" content="destination wedding, wedding planner, India weddings, luxury weddings">
+    <title>DreamKnot Weddings - Your Dream Destination Wedding Planner</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.5), rgba(0, 0, 0, 0.2));
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 1000px;
+            padding: 40px;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            margin-bottom: 24px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+            line-height: 1.2;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        
+        .hero-description {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .slideshow-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: 2px solid white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+            width: 40px;
+            border-radius: 6px;
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            background: white;
+            padding: 30px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .badges-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .badge-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .badge-text h4 {
+            font-size: 1.5rem;
+            color: #1f1d1d;
+            margin-bottom: 4px;
+        }
+        
+        .badge-text p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* Featured Section */
+        .featured-section {
+            background: linear-gradient(135deg, #fef5e7 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(26, 58, 82, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            transform: scaleX(0);
+            transition: 0.4s;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(26, 58, 82, 0.2);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 24px;
+            transition: 0.4s;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+        }
+        
+        /* Testimonials */
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial-card.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 80px;
+            color: var(--primary-color);
+            opacity: 0.2;
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .author-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            color: #1f1d1d;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .testimonial-nav button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .testimonial-nav button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Video Section */
+        .video-section {
+            position: relative;
+            height: 500px;
+            background: url('image/img4.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        
+        .video-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+        
+        .play-button {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+        
+        .play-button i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+        
+        /* Blog Section */
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-category {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: #1f1d1d;
+            line-height: 1.4;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        
+        .read-more:hover {
+            gap: 12px;
+        }
+        
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 18px 24px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .newsletter-form button {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 58, 82, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .badges-container {
+                flex-direction: column;
+            }
+            
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-slideshow">
+            <div class="hero-slide">
+                <img src="image/img2.jpg" alt="Beautiful destination wedding venue">
+            </div>
+            <div class="hero-slide">
+                <img src="image/img4.jpg" alt="Romantic wedding ceremony">
+            </div>
+            <div class="hero-slide">
+                <img src="image/3.jpg" alt="Elegant wedding celebration">
+            </div>
+        </div>
+        
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <p class="hero-subtitle">Welcome to</p>
+                <h1>Your Dream Destination Wedding</h1>
+                <p class="hero-description">Experience the magic of celebrating your love in breathtaking locations across India and beyond. Let us craft your perfect wedding story.</p>
+                
+                <div class="hero-search-container">
+                    <form action="destinations.html" method="GET" class="hero-search-form">
+                        <div class="search-input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="search-field">
+                                <label for="location-search">Where to?</label>
+                                <input type="text" id="location-search" name="search" placeholder="Search destinations (e.g. Goa, Jaipur)..." required>
+                            </div>
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-input-group">
+                            <i class="fas fa-heart"></i>
+                            <div class="search-field">
+                                <label for="type-search">Best For</label>
+                                <select id="type-search" style="border: none; outline: none; background: transparent; width: 100%; font-size: 15px; color: #666; padding: 0; cursor: pointer;">
+                                    <option value="" disabled selected>Select Wedding Type</option>
+                                    <option value="destination">Destination Wedding</option>
+                                    <option value="beach">Beach Wedding</option>
+                                    <option value="palace">Palace Wedding</option>
+                                    <option value="mountain">Mountain Wedding</option>
+                                    <option value="city">City Wedding</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="search-btn"><i class="fas fa-search"></i> Search</button>
+                    </form>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Plan My Wedding</a>
+                    <a href="destinations.html" class="btn btn-secondary"><i class="fas fa-map-marked-alt"></i> Explore Destinations</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slideshow-dots"></div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="badges-container">
+                <div class="badge-item">
+                    <i class="fas fa-award badge-icon"></i>
+                    <div class="badge-text">
+                        <h4>1000+</h4>
+                        <p>Weddings Planned</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-star badge-icon"></i>
+                    <div class="badge-text">
+                        <h4>4.9/5</h4>
+                        <p>Client Rating</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-globe-asia badge-icon"></i>
+                    <div class="badge-text">
+                        <h4>50+</h4>
+                        <p>Destinations</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-users badge-icon"></i>
+                    <div class="badge-text">
+                        <h4>15 Years</h4>
+                        <p>Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section-padding featured-section">
+        <div class="container">
+            <h2 class="section-title">Our Wedding Services</h2>
+            <p class="section-subtitle">Comprehensive planning services to make your wedding day perfect</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Destination Planning</h3>
+                    <p>Expert guidance in selecting the perfect destination that matches your vision and budget.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Venue Selection</h3>
+                    <p>Access to exclusive venues from luxury resorts to heritage palaces across the globe.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Decor & Design</h3>
+                    <p>Stunning decor concepts tailored to your theme, creating magical ambiances.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photography & Video</h3>
+                    <p>Professional cinematography to capture every precious moment of your celebration.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Catering Services</h3>
+                    <p>Exquisite culinary experiences with diverse menus from local to international cuisines.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Entertainment</h3>
+                    <p>Live bands, DJs, and cultural performances to keep your guests entertained.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="services.html" class="btn btn-primary">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-2" style="align-items: center; gap: 60px;">
+                <div class="animate-on-scroll slide-in-left">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                        <img src="image/s1.jpg" alt="Wedding venue" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                        <img src="image/s2.jpg" alt="Wedding decoration" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                        <img src="image/s3.jpg" alt="Wedding ceremony" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                        <img src="image/s4.jpg" alt="Wedding celebration" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                        <img src="image/3.jpg" alt="Wedding couple" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                        <img src="image/img6.jpg" alt="Wedding venue" style="border-radius: 12px; height: 200px; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll slide-in-right">
+                    <h2 style="font-size: 3rem; margin-bottom: 24px;">Crafting Unforgettable Wedding Experiences</h2>
+                    <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: #666;">
+                        At DreamKnot Weddings, we specialize in transforming your wedding dreams into reality. With over 15 years of expertise in planning and executing weddings in the most stunning locations worldwide, we've perfected the art of creating magical celebrations.
+                    </p>
+                    <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: #666;">
+                        Our dedicated team works closely with you to understand your vision, preferences, and desires. Whether it's a serene beach ceremony, a romantic palace wedding, or an exotic cultural experience, we provide personalized planning that exceeds expectations.
+                    </p>
+                    <div style="display: flex; gap: 20px; margin-top: 30px;">
+                        <a href="about.html" class="btn btn-primary">Learn More</a>
+                        <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP VENUES SECTION -->
+    <section class="section-padding" style="background: #fef5e7;">
+        <div class="container">
+            <h2 class="section-title">Featured Wedding Venues</h2>
+            <p class="section-subtitle">Handpicked luxury venues for your special day</p>
+            
+            <div class="grid-4">
+                <div class="card animate-on-scroll">
+                    <div class="card-image">
+                        <img src="image/h2.png" alt="ITC Grand Bharat">
+                        <span class="card-badge">Premium</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">ITC Grand Bharat</h3>
+                        <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 8px;"><i class="fas fa-map-marker-alt"></i> Delhi NCR</p>
+                        <p class="card-text">Luxurious resort with world-class amenities and stunning architecture</p>
+                        <button onclick="openVenueModal('image/h2.png', 'ITC Grand Bharat', '15', 'Delhi NCR')" class="card-link" style="background:none; border:none; padding:0; cursor:pointer; font-size:inherit;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-image">
+                        <img src="image/h4.jpg" alt="The Hridayesh Resort">
+                        <span class="card-badge">Nature</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">The Hridayesh Resort</h3>
+                        <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 8px;"><i class="fas fa-map-marker-alt"></i> Corbett</p>
+                        <p class="card-text">Serene wilderness resort perfect for nature-loving couples</p>
+                        <button onclick="openVenueModal('image/h4.jpg', 'The Hridayesh Resort', '12', 'Corbett')" class="card-link" style="background:none; border:none; padding:0; cursor:pointer; font-size:inherit;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-image">
+                        <img src="image/h3.jpg" alt="Heritage Spa Resort">
+                        <span class="card-badge">Luxury</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Heritage Spa Resort</h3>
+                        <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 8px;"><i class="fas fa-map-marker-alt"></i> Manesar</p>
+                        <p class="card-text">Elegant resort with spa facilities and beautiful landscapes</p>
+                        <button onclick="openVenueModal('image/h3.jpg', 'Heritage Spa Resort', '10', 'Manesar')" class="card-link" style="background:none; border:none; padding:0; cursor:pointer; font-size:inherit;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-image">
+                        <img src="image/h1.jpg" alt="Raas Devigarh">
+                        <span class="card-badge">Royal</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Raas Devigarh</h3>
+                        <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 8px;"><i class="fas fa-map-marker-alt"></i> Udaipur</p>
+                        <p class="card-text">18th-century palace offering royal wedding experiences</p>
+                        <button onclick="openVenueModal('image/h1.jpg', 'Raas Devigarh', '20', 'Udaipur')" class="card-link" style="background:none; border:none; padding:0; cursor:pointer; font-size:inherit;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="venues.html" class="btn btn-primary">Explore All Venues</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINATION CITIES -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Popular Destination Cities</h2>
+            <p class="section-subtitle">Explore India's most romantic wedding destinations</p>
+            
+            <!-- SWIPER SLIDER -->
+            <div class="swiper destination-swiper">
+                <div class="swiper-wrapper" id="destinations-wrapper">
+                    <!-- Destinations will be injected here by JavaScript -->
+                    <div class="swiper-slide">
+                        <div class="loading-slider">Loading Destinations...</div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="destinations.html" class="btn btn-primary">View All Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <div class="play-button" onclick="openVideoModal()">
+                <i class="fas fa-play"></i>
+            </div>
+            <h2 style="font-size: 3rem; margin-bottom: 16px;">Watch Our Story</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95;">See how we create magical wedding experiences</p>
+        </div>
+    </section>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px;">
+            <button onclick="closeVideoModal()" style="position: absolute; top: -50px; right: 0; background: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; color: #333;">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe id="videoFrame" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px;" 
+                    src="" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoFrame');
+            // Using the user's specified wedding video from YouTube
+            iframe.src = 'https://www.youtube.com/embed/KnIF85jtM1w?autoplay=1&mute=1&rel=0&enablejsapi=1';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // Close modal when clicking outside the video container
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    closeVideoModal();
+                }
+            };
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoFrame');
+            iframe.src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+    </script>
+
+
+    <!-- TESTIMONIALS -->
+    <section class="section-padding" style="background: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">What Our Couples Say</h2>
+            <p class="section-subtitle">Real stories from real weddings</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card active">
+                    <p class="testimonial-quote">
+                        DreamKnot Weddings made our destination wedding in Udaipur absolutely magical! Every detail was perfect, from the venue to the decorations. They handled everything so professionally that we could just enjoy our special day without any stress.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s1.jpg" alt="Priya & Rahul" class="author-image">
+                        <div class="author-info">
+                            <h4>Priya & Rahul</h4>
+                            <p>Married in Udaipur, December 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        We wanted a beach wedding in Goa and DreamKnot exceeded all our expectations! The team was incredibly responsive, creative, and made sure our vision came to life. Our guests are still talking about how beautiful everything was!
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s2.jpg" alt="Ananya & Vikram" class="author-image">
+                        <div class="author-info">
+                            <h4>Ananya & Vikram</h4>
+                            <p>Married in Goa, November 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        Planning a destination wedding seemed daunting, but DreamKnot made it effortless. Their attention to detail, vendor coordination, and creative ideas transformed our Jaipur wedding into a royal celebration we'll never forget!
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="image/s3.jpg" alt="Meera & Arjun" class="author-image">
+                        <div class="author-info">
+                            <h4>Meera & Arjun</h4>
+                            <p>Married in Jaipur, October 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <button onclick="changeTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button onclick="changeTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Latest Wedding Insights</h2>
+            <p class="section-subtitle">Tips, trends, and inspiration for your perfect wedding</p>
+            
+            <div class="grid-3">
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="image/img2.jpg" alt="Blog post">
+                        <div class="blog-date">Jan 10, 2026</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Planning Tips</div>
+                        <h3 class="blog-title">10 Essential Tips for Planning a Destination Wedding</h3>
+                        <p class="blog-excerpt">Discover expert advice on how to plan the perfect destination wedding, from choosing the right location to managing logistics...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="image/img4.jpg" alt="Blog post">
+                        <div class="blog-date">Jan 5, 2026</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Destinations</div>
+                        <h3 class="blog-title">Top 5 Beach Wedding Destinations in India</h3>
+                        <p class="blog-excerpt">Explore the most stunning beach locations perfect for your dream seaside wedding celebration...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="image/3.jpg" alt="Blog post">
+                        <div class="blog-date">Dec 28, 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Trends</div>
+                        <h3 class="blog-title">2026 Wedding Decor Trends You Need to Know</h3>
+                        <p class="blog-excerpt">Stay ahead with the latest wedding decoration trends that will make your celebration unforgettable...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 16px;">Stay Updated with Wedding Inspiration</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Subscribe to our newsletter for exclusive tips, trends, and special offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: 3rem; margin-bottom: 20px;">Ready to Plan Your Dream Wedding?</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 32px; opacity: 0.95;">Let our expert wedding planners bring your vision to life</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond. Your dream wedding is our passion.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                        <li><a href="destination-detail.html?location=kashmir">Kashmir</a></li>
+                        <li><a href="destinations.html">View All</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                    <p style="margin-top: 16px; font-size: 14px;">Available 24/7 for your wedding planning needs</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+    </style>
+
+    <!-- VENUE DETAIL MODAL -->
+    <div class="modal-overlay" id="venueModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeVenueModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-content">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="Venue Image">
+                </div>
+                <div class="modal-details">
+                    <span class="modal-tag">Featured Venue</span>
+                    <h2 class="modal-title" id="modal-title">Venue Name</h2>
+                    <p class="venue-location" style="color: var(--primary-color); margin-bottom: 10px; font-weight: 600;">
+                        <i class="fas fa-map-marker-alt"></i> <span id="modal-location">Location</span>
+                    </p>
+                    <div class="modal-price" id="modal-price">₹15 Lakhs</div>
+                    <p class="modal-description">
+                        Experience the epitome of luxury at this stunning venue. With world-class amenities, breathtaking views, and impeccable service, we ensure your special day is nothing short of magical. Perfect for both intimate gatherings and grand celebrations.
+                    </p>
+                    
+                    <h4 style="margin-bottom: 15px; font-size: 1.1rem;">Venue Highlights:</h4>
+                    <div class="modal-features">
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> 500+ Guest Capacity</div>
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> 50+ Rooms</div>
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> Beach Access</div>
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> In-house Catering</div>
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> Swimming Pool</div>
+                        <div class="modal-feature"><i class="fas fa-check-circle"></i> Spa & Wellness</div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <a href="contact.html" class="btn btn-primary" style="flex: 1; text-align: center;">Request Quote</a>
+                        <button onclick="closeVenueModal()" class="btn btn-secondary" style="flex: 1;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        
+        function changeTestimonial(direction) {
+            testimonials[currentTestimonial].classList.remove('active');
+            currentTestimonial = (currentTestimonial + direction + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(() => changeTestimonial(1), 5000);
+        
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (email) {
+                alert('Thank you for subscribing! We\'ll send wedding inspiration to ' + email);
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>

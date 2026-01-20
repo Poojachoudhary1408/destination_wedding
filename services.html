@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive wedding planning services from DreamKnot Weddings. Full-service destination wedding planning, decor, catering, and more.">
+    <title>Our Services | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img4.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .page-header p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .service-detail {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            transition: 0.3s;
+        }
+        
+        .service-detail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .service-icon-large {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            flex-shrink: 0;
+        }
+        
+        .service-header-text h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 12px;
+            color: white;
+        }
+        
+        .service-header-text p {
+            opacity: 0.95;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        .service-body {
+            padding: 40px;
+        }
+        
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .feature-box i {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-top: 3px;
+        }
+        
+        .feature-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #1f1d1d;
+        }
+        
+        .feature-box p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(26, 58, 82, 0.2);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured h3,
+        .pricing-card.featured .price,
+        .pricing-card.featured li {
+            color: white;
+        }
+        
+        .pricing-badge {
+            background: #ffd700;
+            color: #1f1d1d;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: #1f1d1d;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .price small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .pricing-features li i {
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+        
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+        
+        .pricing-card.featured .pricing-features li i {
+            color: #ffd700;
+        }
+        
+        @media (max-width: 768px) {
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .service-body {
+                padding: 30px 20px;
+            }
+            
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Wedding Services</h1>
+            <p>Comprehensive planning and execution services to make your destination wedding absolutely perfect</p>
+        </div>
+    </section>
+
+    <!-- SERVICES OVERVIEW -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <p class="section-subtitle">End-to-end wedding planning services tailored to your dreams</p>
+            
+            <!-- Destination Planning -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Destination Planning & Selection</h2>
+                        <p>Expert guidance in choosing the perfect location for your dream wedding</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        Our destination experts have firsthand knowledge of over 50 stunning locations across India and internationally. We help you select the perfect destination that matches your vision, budget, and guest requirements.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-search-location"></i>
+                            <div>
+                                <h4>Location Scouting</h4>
+                                <p>Personalized destination recommendations based on your preferences</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-calendar-check"></i>
+                            <div>
+                                <h4>Site Visits</h4>
+                                <p>Organized venue tours and destination familiarization trips</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-file-contract"></i>
+                            <div>
+                                <h4>Vendor Coordination</h4>
+                                <p>Connect with trusted local vendors and service providers</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-plane"></i>
+                            <div>
+                                <h4>Travel Arrangements</h4>
+                                <p>Complete travel and accommodation planning for all guests</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venue Selection -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Venue Selection & Management</h2>
+                        <p>Access to exclusive venues from luxury resorts to heritage palaces</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        We have exclusive partnerships with premium venues worldwide, ensuring you get the best locations at competitive rates with exceptional service.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-crown"></i>
+                            <div>
+                                <h4>Premium Venues</h4>
+                                <p>Luxury hotels, resorts, palaces, and unique locations</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <h4>Negotiation</h4>
+                                <p>Best rates and packages through our partnerships</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-clipboard-check"></i>
+                            <div>
+                                <h4>Contract Management</h4>
+                                <p>Handle all venue contracts and legal documentation</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-users-cog"></i>
+                            <div>
+                                <h4>On-site Coordination</h4>
+                                <p>Dedicated team for venue setup and management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decor & Design -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Decor & Design</h2>
+                        <p>Stunning decor concepts that bring your vision to life</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        Our creative design team crafts breathtaking decor themes tailored to your style, from traditional elegance to contemporary chic.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <h4>Theme Development</h4>
+                                <p>Custom themes reflecting your personality and story</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-paint-brush"></i>
+                            <div>
+                                <h4>Floral Arrangements</h4>
+                                <p>Exquisite floral designs and installations</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-magic"></i>
+                            <div>
+                                <h4>Lighting Design</h4>
+                                <p>Dramatic lighting to create perfect ambiance</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-chair"></i>
+                            <div>
+                                <h4>Furniture & Props</h4>
+                                <p>Elegant furniture and decorative elements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catering -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Catering Services</h2>
+                        <p>Exquisite culinary experiences for every palate</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        From traditional Indian cuisine to international delicacies, our catering partners deliver exceptional food experiences.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h4>Menu Customization</h4>
+                                <p>Personalized menus for all events and preferences</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-glass-cheers"></i>
+                            <div>
+                                <h4>Bar Services</h4>
+                                <p>Premium beverages and signature cocktails</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                                <h4>Cake & Desserts</h4>
+                                <p>Custom wedding cakes and dessert stations</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-concierge-bell"></i>
+                            <div>
+                                <h4>Service Staff</h4>
+                                <p>Professional waitstaff and service team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography & Videography -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Photography & Videography</h2>
+                        <p>Capture every precious moment with cinematic excellence</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        Our award-winning photographers and videographers create timeless memories with artistic storytelling.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-film"></i>
+                            <div>
+                                <h4>Cinematic Films</h4>
+                                <p>Feature-length wedding films with storytelling</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-images"></i>
+                            <div>
+                                <h4>Photo Albums</h4>
+                                <p>Premium albums and photo books</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-helicopter"></i>
+                            <div>
+                                <h4>Drone Coverage</h4>
+                                <p>Aerial photography and videography</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Full Coverage</h4>
+                                <p>Multi-day coverage for all events</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entertainment -->
+            <div class="service-detail animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="service-header-text">
+                        <h2>Entertainment & Performances</h2>
+                        <p>Keep your guests entertained with world-class performances</p>
+                    </div>
+                </div>
+                <div class="service-body">
+                    <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                        From live bands to celebrity performances, we curate entertainment that matches your wedding's vibe.
+                    </p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fas fa-guitar"></i>
+                            <div>
+                                <h4>Live Bands</h4>
+                                <p>Professional musicians and live performances</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-compact-disc"></i>
+                            <div>
+                                <h4>DJ Services</h4>
+                                <p>Top DJs with custom playlists</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-theater-masks"></i>
+                            <div>
+                                <h4>Cultural Shows</h4>
+                                <p>Traditional dancers and performers</p>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Celebrity Artists</h4>
+                                <p>Book renowned performers for your event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING PACKAGES -->
+    <section class="section-padding" style="background: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Wedding Packages</h2>
+            <p class="section-subtitle">Choose a package that fits your vision and budget</p>
+            
+            <div class="grid-3">
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Essential</h3>
+                    <div class="price">₹5L+ <small>/wedding</small></div>
+                    <p style="color: #666; margin-bottom: 20px;">Perfect for intimate celebrations</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Venue Selection</li>
+                        <li><i class="fas fa-check"></i> Basic Decor</li>
+                        <li><i class="fas fa-check"></i> Catering (50-100 guests)</li>
+                        <li><i class="fas fa-check"></i> Photography</li>
+                        <li><i class="fas fa-check"></i> Coordination Team</li>
+                        <li><i class="fas fa-check"></i> Guest Management</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured animate-on-scroll">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Premium</h3>
+                    <div class="price">₹15L+ <small>/wedding</small></div>
+                    <p style="margin-bottom: 20px; opacity: 0.95;">Complete wedding experience</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Essential</li>
+                        <li><i class="fas fa-check"></i> Premium Decor & Themes</li>
+                        <li><i class="fas fa-check"></i> Catering (200-400 guests)</li>
+                        <li><i class="fas fa-check"></i> Photo + Video Coverage</li>
+                        <li><i class="fas fa-check"></i> Entertainment (DJ/Band)</li>
+                        <li><i class="fas fa-check"></i> Travel Arrangements</li>
+                        <li><i class="fas fa-check"></i> Multi-Event Planning</li>
+                    </ul>
+                    <a href="contact.html" class="btn" style="width: 100%; background: white; color: var(--primary-color);">Get Started</a>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Luxury</h3>
+                    <div class="price">₹30L+ <small>/wedding</small></div>
+                    <p style="color: #666; margin-bottom: 20px;">Ultimate luxury experience</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Premium</li>
+                        <li><i class="fas fa-check"></i> Luxury Venue Options</li>
+                        <li><i class="fas fa-check"></i> Unlimited Guests</li>
+                        <li><i class="fas fa-check"></i> Celebrity Performances</li>
+                        <li><i class="fas fa-check"></i> Drone Coverage</li>
+                        <li><i class="fas fa-check"></i> International Destinations</li>
+                        <li><i class="fas fa-check"></i> Concierge Services</li>
+                        <li><i class="fas fa-check"></i> Personal Wedding Planner</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Ready to Plan Your Perfect Wedding?</h2>
+            <p style="font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 32px; opacity: 0.95;">Let's discuss your requirements and create a custom package</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

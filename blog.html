@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wedding planning tips, destination guides, and inspiration from DreamKnot Weddings experts.">
+    <title>Wedding Blog | DreamKnot Weddings</title>
+    
+    <link rel="icon" type="image/png" href="image/logo_wed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.7), rgba(0, 0, 0, 0.5)), url('image/img2.jpg') center/cover;
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .blog-featured {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .blog-featured-image {
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .blog-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-featured-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .meta-item i {
+            color: var(--primary-color);
+        }
+        
+        .blog-category-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-card-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-date-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .blog-card-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: #1f1d1d;
+            line-height: 1.4;
+        }
+        
+        .blog-card-excerpt {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .read-more-btn {
+            color: var(--primary-color);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        
+        .read-more-btn:hover {
+            gap: 12px;
+        }
+        
+        .sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 120px;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            transition: 0.3s;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        .category-count {
+            background: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        
+        .recent-post {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+        
+        .recent-post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-content h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .recent-post-content p {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-featured-content {
+                padding: 30px 20px;
+            }
+            
+            .blog-featured-image {
+                height: 300px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+918048123272">+91 80-48-12-32-72</a>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@dreamknotweddings.com">info@dreamknotweddings.com</a>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <span style="opacity: 0.8; margin-right: 10px;">Follow Us:</span>
+                <div class="top-bar-social">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">DREAMKNOT</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="destinations.html">Destinations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                            <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                            <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                            <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                            <li><a href="destinations.html">View All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="header-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/918048123272" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wedding Blog & Inspiration</h1>
+            <p style="font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.95;">Expert tips, trends, and stories from the world of destination weddings</p>
+        </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section class="section-padding">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 60px;">
+                <div>
+                    <!-- Featured Post -->
+                    <div class="blog-featured">
+                        <div class="blog-featured-image">
+                            <img src="image/img2.jpg" alt="Featured Blog Post">
+                        </div>
+                        <div class="blog-featured-content">
+                            <span class="blog-category-tag">Featured</span>
+                            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">10 Essential Tips for Planning Your Destination Wedding</h2>
+                            <div class="blog-meta">
+                                <span class="meta-item"><i class="fas fa-calendar"></i> January 10, 2026</span>
+                                <span class="meta-item"><i class="fas fa-user"></i> By Priya Sharma</span>
+                                <span class="meta-item"><i class="fas fa-clock"></i> 8 min read</span>
+                            </div>
+                            <p style="font-size: 17px; line-height: 1.8; color: #666; margin-bottom: 30px;">
+                                Planning a destination wedding can be both exciting and overwhelming. From choosing the perfect location to managing guest logistics, we share expert advice to make your celebration seamless and unforgettable.
+                            </p>
+                            <a href="#" class="btn btn-primary">Read Full Article</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Grid -->
+                    <div class="blog-grid">
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/img4.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Jan 5</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Destinations</span>
+                                <h3 class="blog-card-title">Top 5 Beach Wedding Destinations in India</h3>
+                                <p class="blog-card-excerpt">
+                                    Discover the most stunning beach locations perfect for your dream seaside wedding celebration, from Goa to Kerala.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/3.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Dec 28</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Trends</span>
+                                <h3 class="blog-card-title">2026 Wedding Decor Trends You Need to Know</h3>
+                                <p class="blog-card-excerpt">
+                                    Stay ahead with the latest wedding decoration trends that will make your celebration unforgettable and Instagram-worthy.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/s1.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Dec 20</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Planning</span>
+                                <h3 class="blog-card-title">How to Create the Perfect Wedding Budget</h3>
+                                <p class="blog-card-excerpt">
+                                    Learn how to allocate your wedding budget wisely and get the most value for your destination celebration.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/s2.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Dec 15</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Venues</span>
+                                <h3 class="blog-card-title">Palace Weddings: Royal Celebrations in Rajasthan</h3>
+                                <p class="blog-card-excerpt">
+                                    Experience the grandeur of royal weddings in Rajasthan's magnificent palaces and heritage properties.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/s3.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Dec 10</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Tips</span>
+                                <h3 class="blog-card-title">Guest Management for Destination Weddings</h3>
+                                <p class="blog-card-excerpt">
+                                    Essential tips for managing guest travel, accommodation, and ensuring everyone has an amazing experience.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="image/s4.jpg" alt="Blog Post">
+                                <div class="blog-date-badge">Dec 5</div>
+                            </div>
+                            <div class="blog-card-content">
+                                <span class="blog-category-tag">Real Weddings</span>
+                                <h3 class="blog-card-title">A Magical Udaipur Palace Wedding Story</h3>
+                                <p class="blog-card-excerpt">
+                                    Follow the journey of Ananya and Vikram's stunning palace wedding in the City of Lakes.
+                                </p>
+                                <a href="#" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar">
+                        <h3>Categories</h3>
+                        <ul class="category-list">
+                            <li><a href="#">Planning Tips <span class="category-count">24</span></a></li>
+                            <li><a href="#">Destinations <span class="category-count">18</span></a></li>
+                            <li><a href="#">Decor & Trends <span class="category-count">15</span></a></li>
+                            <li><a href="#">Real Weddings <span class="category-count">32</span></a></li>
+                            <li><a href="#">Venues <span class="category-count">12</span></a></li>
+                            <li><a href="#">Budget Tips <span class="category-count">8</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar" style="margin-top: 30px;">
+                        <h3>Recent Posts</h3>
+                        <div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="image/d1.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Beach Wedding Checklist</h4>
+                                    <p>January 8, 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="image/d2.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Choosing Your Wedding Theme</h4>
+                                    <p>January 3, 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="image/d3.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Photography Tips for Couples</h4>
+                                    <p>December 30, 2025</p>
+                                </div>
+                            </div>
+
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="image/d4.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Sustainable Wedding Ideas</h4>
+                                    <p>December 25, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Need Expert Wedding Planning Advice?</h2>
+            <p style="font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 32px; opacity: 0.95;">Our team is here to help you plan your perfect celebration</p>
+            <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; font-size: 18px; padding: 18px 48px;">Get Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DreamKnot Weddings</h3>
+                    <p>Creating unforgettable destination wedding experiences across India and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="destination-detail.html?location=goa">Goa</a></li>
+                        <li><a href="destination-detail.html?location=udaipur">Udaipur</a></li>
+                        <li><a href="destination-detail.html?location=jaipur">Jaipur</a></li>
+                        <li><a href="destination-detail.html?location=kerala">Kerala</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 80-48-12-32-72</p>
+                    <p><i class="fas fa-envelope"></i> info@dreamknotweddings.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 DreamKnot Weddings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+    </style>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
